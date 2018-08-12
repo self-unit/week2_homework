@@ -53,10 +53,6 @@ class GuestTest < MiniTest::Test
     assert_equal("Whoo!", @guest_5.room_has_fav_song(@room_1))
   end
 
-  def test_find_fav_song_by_name
-    assert_equal("Faith", @guest_5.room_has_fav_song(@room_1))
-  end
-
   def test_room_doesnt_have_fav_song
     assert_nil(@guest_2.room_has_fav_song(@room_1))
   end
