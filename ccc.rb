@@ -19,6 +19,10 @@ attr_accessor :till, :rooms
     end
   end
 
+  def remove_guest_from_room(room, guest)
+    room.occupants.delete(guest)
+  end
+
   def pay_tab(guest, room)
     guest.wallet -= room.give_tab_total
     @till += room.give_tab_total

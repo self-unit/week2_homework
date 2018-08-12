@@ -42,9 +42,9 @@ class RoomTest < MiniTest::Test
     assert_equal("Triple C's", @club.name)
   end
 
-  def test_room_has_space_after_add
+  def test_add_guest_to_room
     @club.add_guest_to_room(@room_1, @guest_1)
-    assert_equal(true, @club.add_guest_to_room(@room_1, @guest_2))
+    assert_equal([@guest_1], @room_1.occupants)
   end
 
   def test_room_is_full
@@ -57,6 +57,12 @@ class RoomTest < MiniTest::Test
   def test_charge_entry_fee
     @club.add_guest_to_room(@room_1, @guest_1)
     assert_equal(110, @club.till)
+  end
+
+  def test_remove_guest_from_room
+    @club.add_guest_to_room(@room_1, @guest_1)
+    @club.remove_guest_from_room(@room_1, @guest_1)
+    assert_equal([], @room_1.occupants)
   end
 
   def test_till_is_paid
