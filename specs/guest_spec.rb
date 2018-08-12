@@ -5,6 +5,7 @@ require_relative('../room')
 require_relative('../guest')
 require_relative('../food')
 require_relative('../ccc')
+require_relative('../song')
 
 class GuestTest < MiniTest::Test
 
@@ -27,10 +28,11 @@ class GuestTest < MiniTest::Test
 
     @songs_1 = [@song_1, @song_2, @song_3, @song_4, @song_5]
     @songs_2 = [@song_2, @song_3, @song_4]
+    @songs_2 = [@song_3, @song_5]
 
     @room_1 = Room.new("The Winchester", @songs_1, 3)
     @room_2 = Room.new("The Spandau", @songs_2, 5)
-    @room_3 = Room.new("The Omega", @song_3, 2)
+    @room_3 = Room.new("The Omega", @songs_3, 2)
 
     @guest_1 = Guest.new("Dolph Lundgren", 50, "Man in the Mirror")
     @guest_2 = Guest.new("Eric Cartmen", 12, "Aggressor")
@@ -47,29 +49,25 @@ class GuestTest < MiniTest::Test
     assert_equal(50, @guest_1.wallet)
   end
 
-  def test_age
-    assert_equal(60, @guest_1.age)
-  end
-
   def test_room_has_fav_song
-    assert_equal("Whoo!", @guest_1.room_has_fav_song(@room_1.songs))
+    assert_equal("Whoo!", @guest_5.room_has_fav_song(@room_1))
   end
 
   def test_room_doesnt_have_fav_song
-    assert_equal(nil, @guest_1.room_has_fav_song(@room_3.songs))
+    assert_nil(@guest_2.room_has_fav_song(@room_1))
   end
 
-  def test_guest_can_pay_tab
-    @guest_1.pay_tab(@room_1, @food_1)
-    assert_equal(22, @guest_1.wallet)
-    assert_equal(308, @room_1.till)
-  end
-
-  def test_guest_cant_pay_tab
-    @guest_2.buy_drink(@room_1.tab, @food_1)
-    assert_equal(12, @guest_2.wallet)
-    assert_equal(300, @room_1.till)
-  end
+  # def test_guest_can_pay_tab
+  #   @guest_1.pay_tab(@room_1, @food_1)
+  #   assert_equal(22, @guest_1.wallet)
+  #   assert_equal(308, @room_1.tab)
+  # end
+  #
+  # def test_guest_cant_pay_tab
+  #   @guest_2.pay_tab(@room_1.tab, @food_1)
+  #   assert_equal(12, @guest_2.wallet)
+  #   assert_equal(300, @room_1.tab)
+  # end
 
   # def test_guest_too_young
   #   @guest_2.buy_drink(@room_1, @orange_drink)
@@ -88,7 +86,6 @@ class GuestTest < MiniTest::Test
   #   # assert_equal(306, @room_1.till)
   #   assert_equal(61, @guest_1.drunkenness)
   # end
-
 
   # def test_guest_rejuvenation_level
   #   @guest_1.buy_drink(@room_1, @red_drink)

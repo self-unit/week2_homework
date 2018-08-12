@@ -14,20 +14,19 @@ class Guest
     @wallet -= room_tab
   end
 
-  def room_has_fav_song(room_songs)
-    for song in room_songs
-      if song == @fav_song
-        return "Whoo!"
-      end
+  def room_has_fav_song(room)
+    if room.songs.any? {|song| song == @fav_song}
+      return "Whoo!"
     end
+
+    # for song in room_songs
+    #   if song == @fav_song
+    #     return "Whoo!"
+    #   else
+    #     nil
+    #   end
+    # end
   end
 
-  #
-  # def buy_drink(room, drink)
-  #   if room.drink_sale(@age, drink, @drunkenness) == true
-  #   @wallet -= drink.price
-  #   @drunkenness += drink.alc_level
-  #   end
-  # end
 
 end

@@ -62,7 +62,7 @@ class RoomTest < MiniTest::Test
   def test_till_is_paid
     @room_1.add_to_tab(@red_drink)
     @room_1.add_to_tab(@food_2)
-    assert_equal(113, pay_tab(@guest_1, @room_1))
+    assert_equal(113, @club.pay_tab(@guest_1, @room_1))
   end
 
 end
