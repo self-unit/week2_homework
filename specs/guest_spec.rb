@@ -32,11 +32,11 @@ class GuestTest < MiniTest::Test
     @room_2 = Room.new("The Spandau", @songs_2, 5)
     @room_3 = Room.new("The Omega", @song_3, 2)
 
-    @guest_1 = Guest.new("Dolph Lundgren", 50, 60)
-    @guest_2 = Guest.new("Eric Cartmen", 12, 10)
-    @guest_3 = Guest.new("Dolly Parton", 100, 72)
-    @guest_4 = Guest.new("Jackie Chan", 1000, 65)
-    @guest_5 = Guest.new("Shangela", 5, 32)
+    @guest_1 = Guest.new("Dolph Lundgren", 50, "Man in the Mirror")
+    @guest_2 = Guest.new("Eric Cartmen", 12, "Aggressor")
+    @guest_3 = Guest.new("Dolly Parton", 100, "9 to 5")
+    @guest_4 = Guest.new("Jackie Chan", 1000, "ShiChaHai")
+    @guest_5 = Guest.new("Shangela", 5, "Faith")
   end
 
   def test_guest_has_name
@@ -51,6 +51,14 @@ class GuestTest < MiniTest::Test
     assert_equal(60, @guest_1.age)
   end
 
+  def test_room_has_fav_song
+    assert_equal("Whoo!", @guest_1.room_has_fav_song(@room_1.songs))
+  end
+
+  def test_room_doesnt_have_fav_song
+    assert_equal(nil, @guest_1.room_has_fav_song(@room_3.songs))
+  end
+
   def test_guest_can_pay_tab
     @guest_1.pay_tab(@room_1, @food_1)
     assert_equal(22, @guest_1.wallet)
@@ -58,7 +66,7 @@ class GuestTest < MiniTest::Test
   end
 
   def test_guest_cant_pay_tab
-    @guest_2.buy_drink(@room_1, @food_1)
+    @guest_2.buy_drink(@room_1.tab, @food_1)
     assert_equal(12, @guest_2.wallet)
     assert_equal(300, @room_1.till)
   end

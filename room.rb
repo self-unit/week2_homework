@@ -1,6 +1,7 @@
 class Room
 
-  attr_reader :name, :songs, :capacity, :occupants, :tab
+  attr_reader :name, :songs, :capacity, :tab
+  attr_accessor :occupants
 
   def initialize(name, songs, capacity)
     @name = name
@@ -10,30 +11,12 @@ class Room
     @occupants = []
   end
 
-  def add_guest_to_room(guest)
-    if @occupants.length < @capacity
-      @occupants.push(guest)
-      return true
-    else
-      false
-    end
-  end
-
   def add_to_tab(item)
     @tab.push(item)
   end
 
-  # def add_to_tab(age, item, drunkenness)
-  #   if item.class.name == "Drink"
-  #     if age > 18 && drunkenness < 50
-  #       @tab.push(item)
-  #     else
-  #       return "You're only #{age}, get tae!"
-  #     end
-  #   else
-  #     @tab.push(item)
-  #   end
-  #
-  # end
+  def give_tab_total
+    tab_total = @tab.sum {|item| item.price}
+  end
 
 end

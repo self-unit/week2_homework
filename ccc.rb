@@ -1,19 +1,27 @@
 class Ccc
 
-attr_reader :name, :rooms
-attr_accessor :till
+attr_reader :name
+attr_accessor :till, :rooms
 
-def initialize(name, rooms, till)
-  @name = name
-  @till = till
-  @drinks = drinks || []
-end
+  def initialize(name, rooms, till)
+    @name = name
+    @till = till
+    @rooms = rooms
+  end
 
-def entry_fee(guest)
-  @till += 10
-end
+  def add_guest_to_room(room, guest)
+    if room.occupants.length < room.capacity
+      room.occupants.push(guest)
+      @till += 10
+      return true
+    else
+      false
+    end
+  end
 
-def tab_to_till(guest, room)
-  @till += room.tab
-  guest
+  def pay_tab(guest, room)
+    guest.wallet -= room.give_tab_total
+    @till += room.give_tab_total
+  end
+
 end

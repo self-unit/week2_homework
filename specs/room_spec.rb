@@ -43,15 +43,8 @@ class RoomTest < MiniTest::Test
     assert_equal("The Winchester", @room_1.name)
   end
 
-  def test_room_has_space
-    assert_equal(true, @room_1.add_guest_to_room(@guest_1))
-  end
-
-  def test_room_is_full
-    @room_1.add_guest_to_room(@guest_1)
-    @room_1.add_guest_to_room(@guest_2)
-    @room_1.add_guest_to_room(@guest_3)
-    assert_equal(false, @room_1.add_guest_to_room(@guest_1))
+  def test_room_has_capacity
+    assert_equal(3, @room_1.capacity)
   end
 
   def test_room_has_songs
@@ -59,28 +52,13 @@ class RoomTest < MiniTest::Test
   end
 
   def test_room_adds_item_to_tab
-    @room_1.add_to_tab(@food_1)
     @room_1.add_to_tab(@blue_drink)
-    assert_equal(2, @room_1.tab.count)
+    assert_equal(1, @room_1.tab.count)
   end
 
-  # def test_room_adds_food_to_tab
-  #   @room_1.add_to_tab(@guest_1.age, @food_1, @guest_1.drunkenness)
-  #   assert_equal(1, @room_1.tab.count)
-  #   # assert_equal(28, @room_1.tab[:price])
-  # end
-  #
-  # def test_room_adds_drink_to_tab
-  #   @room_1.add_to_tab(@guest_1.age, @red_drink, @guest_1.drunkenness)
-  #   assert_equal(1, @room_1.tab.count)
-  #   # assert_equal(5, @room_1.tab[:price])
-  # end
-  #
-  # def test_guest_too_young
-  #   assert_equal("You're only #{age}, get tae!", @add_to_tab(@guest_2.age, @red_drink, @guest_1.drunkenness))
-  # end
-  #
-  # def test_guest_too_drunk
-  # end
+  def test_room_has_tab_total
+    @room_1.add_to_tab(@food_1)
+    assert_equal(28, @room_1.give_tab_total)
+  end
 
 end

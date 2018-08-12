@@ -1,19 +1,24 @@
 class Guest
 
-  attr_reader :name #:drunkenness
-  attr_accessor :wallet, :age
+  attr_reader :name, :fav_song #:drunkenness
+  attr_accessor :wallet
 
-  def initialize(name, wallet, age)
+  def initialize(name, wallet, fav_song)
     @name = name
     @wallet = wallet
-    @age = age
+    @fav_song = fav_song
     # @drunkenness = 0
   end
 
-  def pay_tab(room)
-    if @wallet >= room.tab
-      ccc.tab_to_till(tab)
-      @wallet -= room.tab
+  def pay_tab(room_tab)
+    @wallet -= room_tab
+  end
+
+  def room_has_fav_song(room_songs)
+    for song in room_songs
+      if song == @fav_song
+        return "Whoo!"
+      end
     end
   end
 
