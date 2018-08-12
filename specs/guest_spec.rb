@@ -53,44 +53,12 @@ class GuestTest < MiniTest::Test
     assert_equal("Whoo!", @guest_5.room_has_fav_song(@room_1))
   end
 
+  def test_find_fav_song_by_name
+    assert_equal("Faith", @guest_5.room_has_fav_song(@room_1))
+  end
+
   def test_room_doesnt_have_fav_song
     assert_nil(@guest_2.room_has_fav_song(@room_1))
   end
-
-  # def test_guest_can_pay_tab
-  #   @guest_1.pay_tab(@room_1, @food_1)
-  #   assert_equal(22, @guest_1.wallet)
-  #   assert_equal(308, @room_1.tab)
-  # end
-  #
-  # def test_guest_cant_pay_tab
-  #   @guest_2.pay_tab(@room_1.tab, @food_1)
-  #   assert_equal(12, @guest_2.wallet)
-  #   assert_equal(300, @room_1.tab)
-  # end
-
-  # def test_guest_too_young
-  #   @guest_2.buy_drink(@room_1, @orange_drink)
-  #   assert_equal(5, @room_1.drinks.count)
-  #   assert_equal(12, @guest_2.wallet)
-  #   assert_equal(300, @room_1.till)
-  # end
-
-  # def test_guest_too_drunk
-  #   @guest_1.buy_drink(@room_1, @red_drink)
-  #   @guest_1.buy_drink(@room_1, @blue_drink)
-  #   @guest_1.buy_drink(@room_1, @green_drink)
-  #
-  #   # assert_equal(3, @room_1.drinks.count)
-  #   # assert_equal(44, @guest_1.wallet)
-  #   # assert_equal(306, @room_1.till)
-  #   assert_equal(61, @guest_1.drunkenness)
-  # end
-
-  # def test_guest_rejuvenation_level
-  #   @guest_1.buy_drink(@room_1, @red_drink)
-  #   @guest_1.buy_food(@room_1, @food_2)
-  #   assert_equal(25, @guest_1.drunkenness)
-  # end
 
 end

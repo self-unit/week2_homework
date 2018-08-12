@@ -15,9 +15,11 @@ class Guest
   end
 
   def room_has_fav_song(room)
-    if room.songs.any? {|song| song == @fav_song}
-      return "Whoo!"
-    end
+    # if room.songs.any? {|song| song == @fav_song}
+    #   return "Whoo!"
+    # end
+
+    return room.songs.find {|song| song == @fav_song}
 
     # for song in room_songs
     #   if song == @fav_song
@@ -27,6 +29,5 @@ class Guest
     #   end
     # end
   end
-
 
 end
